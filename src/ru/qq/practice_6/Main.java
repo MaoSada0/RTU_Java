@@ -4,12 +4,12 @@ public class Main {
     public static void main(String[] args) {
         // вариант 1
 
-        int num = 999;
+        int num = 1111;
 
         try {
             System.out.println(num + ": " + Convertor.convertNumberToText(num));
         } catch (InvalidNumberException e) {
-            throw new RuntimeException(e);
+            System.err.println("Error: " + e.getMessage());
         }
     }
 }

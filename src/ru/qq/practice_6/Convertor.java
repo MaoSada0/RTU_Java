@@ -1,7 +1,7 @@
 package ru.qq.practice_6;
 
 public class Convertor {
-    private final static String[] hundreds = {"", "сто", "двести", "триста", "четыреста", "пятьсот", "шестьсот", "семьсот", "восемьсот", "девятьсот"};
+    private final static String[] hundreds = {"", "Сто", "Двести", "Триста", "Четыреста", "Пятьсот", "Шестьсот", "Семьсот", "Восемьсот", "Девятьсот"};
     private final static String[] tens = {"", "десять", "двадцать", "тридцать", "сорок", "пятьдесят", "шестьдесят", "семьдесят", "восемьдесят", "девяносто"};
     private final static String[] teens = {"десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"};
     private final static String[] units = {"", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"};
@@ -18,9 +18,11 @@ public class Convertor {
 
         result.append(hundreds[h]).append(" ");
 
-        if (t == 1) result.append(teens[u]);
-        else result.append(tens[t]).append(" ").append(units[u]);
+        if (t == 1)
+            result.append(teens[u]);
+        else
+            result.append(tens[t]).append(" ").append(units[u]);
 
-        return result.toString().trim().replaceAll("\\s+", " ");
+        return result.toString().replaceAll("\\s+", " ");
     }
 }
