@@ -6,7 +6,7 @@ public class Convertor {
     private final static String[] teens = {"десять", "одиннадцать", "двенадцать", "тринадцать", "четырнадцать", "пятнадцать", "шестнадцать", "семнадцать", "восемнадцать", "девятнадцать"};
     private final static String[] units = {"", "один", "два", "три", "четыре", "пять", "шесть", "семь", "восемь", "девять"};
 
-    public static String convertNumberToText(int number) throws InvalidNumberException {
+    public static String convertNumberToText(int number) throws InvalidNumberException{
         if (number < 100 || number > 999)
             throw new InvalidNumberException("You must provide positive three-digit number");
 

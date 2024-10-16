@@ -4,7 +4,7 @@ public class Main {
     public static void main(String[] args) {
         // вариант 1
 
-        int num = 1111;
+        int num = 1000;
 
         try {
             System.out.println(num + ": " + Convertor.convertNumberToText(num));
