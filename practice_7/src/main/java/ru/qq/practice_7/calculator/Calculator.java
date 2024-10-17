@@ -1,7 +1,9 @@
 package ru.qq.practice_7.calculator;
 
-
-import ru.qq.practice_7.calculator.operation.*;
+import ru.qq.basicoperation.BasicOperation;
+import ru.qq.numbersystemoperation.NumberSystemOperation;
+import ru.qq.powoperation.PowOperation;
+import ru.qq.tetrationoperation.TetrationOperation;
 
 public class Calculator {
     public static double add(double a, double b) {

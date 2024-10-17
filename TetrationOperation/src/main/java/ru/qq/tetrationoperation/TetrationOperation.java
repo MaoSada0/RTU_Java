@@ -1,4 +1,4 @@
-package ru.qq.practice_7.calculator.operation;
+package ru.qq.tetrationoperation;
 
 import java.util.stream.IntStream;
 

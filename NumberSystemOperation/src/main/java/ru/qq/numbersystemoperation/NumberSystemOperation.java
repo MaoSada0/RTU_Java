@@ -1,4 +1,4 @@
-package ru.qq.practice_7.calculator.operation;
+package ru.qq.numbersystemoperation;
 
 public class NumberSystemOperation {
     public static String toBinary(int num) {

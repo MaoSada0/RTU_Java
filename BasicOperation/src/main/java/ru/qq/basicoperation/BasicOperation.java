@@ -1,4 +1,4 @@
-package ru.qq.practice_7.calculator.operation;
+package ru.qq.basicoperation;
 
 public class BasicOperation {
     public static double add(double a, double b) {
