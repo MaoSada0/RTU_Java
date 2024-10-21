@@ -1,4 +1,4 @@
-package ru.qq.practice_7.calculator;
+package ru.qq.practice_8.calculator;
 
 import ru.qq.basicoperation.BasicOperation;
 import ru.qq.numbersystemoperation.NumberSystemOperation;

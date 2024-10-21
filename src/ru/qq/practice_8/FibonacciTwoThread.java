@@ -1,4 +1,4 @@
-package ru.qq.practice_7;
+package ru.qq.practice_8;
 
 public class FibonacciTwoThread {
     private static long result;

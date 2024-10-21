@@ -1,6 +1,6 @@
-package ru.qq.practice_7;
+package ru.qq.practice_8;
 
-import ru.qq.practice_7.calculator.Calculator;
+import ru.qq.practice_8.calculator.Calculator;
 
 public class Main {
     public static void main(String[] args) {
