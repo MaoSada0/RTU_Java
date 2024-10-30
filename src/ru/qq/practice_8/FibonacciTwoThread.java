@@ -19,7 +19,6 @@ public class FibonacciTwoThread {
         printThread.start();
 
         sumThread.start();
-
     }
 
     private static void fibonacciFunc(int n){
