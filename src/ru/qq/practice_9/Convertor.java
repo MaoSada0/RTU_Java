@@ -1,143 +1,122 @@
 package ru.qq.practice_9;
-
-import java.util.Map;
-
-import java.util.stream.Collectors;
-import java.util.stream.Stream;
-
 public class Convertor {
-    private Map<Class<?>, Boolean> flags;
-    private Object value;
 
-    public Convertor() {
-        flags = initializeFlags();
+    private String value;
+    private TypeOfData type;
+
+    public Convertor(int value) {
+        this.value = Integer.toString(value);
+        this.type = TypeOfData.INTEGER;
     }
 
-    private static Map<Class<?>, Boolean> initializeFlags() {
-        return Stream.of(String.class, Integer.class, Boolean.class, Character.class)
-                .collect(Collectors.toMap(key -> key, key -> false));
-    }
-
-
-    private boolean correctFlagType(Class<?> type){
-        return flags.containsKey(type);
-    }
-
-    private void changeFlag(Class<?> type){
-        if(!correctFlagType(type))
-            return;
-
-        flags.keySet().forEach(key -> flags.put(key, false));
-
-        flags.put(type, true);
-    }
-
-    private boolean validateInput(Class<?> type){
-        if(value == null){
-            System.out.println("Set val");
-            return false;
-        }
-
-        if(flags.get(type))
-            return true;
-
-        System.out.println("Current type not " + type);
-
-        return false;
-    }
-
-    public void createVal(Class<?> type, Object value){
-        if(!correctFlagType(type))
-            throw new IllegalArgumentException("Provide smth from: {String, Integer, Boolean, Character}");
-
-        changeFlag(type);
-
+    public Convertor(String value) {
         this.value = value;
+        this.type = TypeOfData.STRING;
     }
 
-    public void deleteVal(){
-        flags = initializeFlags();
-        value = null;
+    public Convertor(boolean value) {
+        this.value = Boolean.toString(value);
+        this.type = TypeOfData.BOOLEAN;
     }
 
-    public void setValue(Object value) {
-        boolean isValid = flags.entrySet().stream()
-                .anyMatch(entry -> entry.getValue() && entry.getKey().isInstance(value));
+    public Convertor(char value) {
+        this.value = Character.toString(value);
+        this.type = TypeOfData.CHARACTER;
+    }
 
-        if (!isValid) {
-            System.out.println("value isnt valid");
-            return;
-        }
+    public void deleteData(){
+        this.value = null;
+        this.type = null;
+    }
 
+    public void setValue(int value) {
+        this.value = Integer.toString(value);
+        this.type = TypeOfData.INTEGER;
+    }
+
+
+    public void setValue(String value) {
         this.value = value;
+        this.type = TypeOfData.STRING;
     }
 
-    private void setFlags(Map<Class<?>, Boolean> flags) {
-        this.flags = flags;
+    public void setValue(boolean value) {
+        this.value = Boolean.toString(value);
+        this.type = TypeOfData.BOOLEAN;
     }
 
-    public Convertor cloneVal(){
-        Convertor conv = new Convertor();
-
-        conv.setValue(value);
-        conv.setFlags(flags);
-
-        return conv;
+    public void setValue(char value) {
+        this.value = Character.toString(value);
+        this.type = TypeOfData.CHARACTER;
     }
 
-    public void concatenate(String str){
-        if(!validateInput(String.class))
-            return;
+    public Convertor getClone(){
+        return new Convertor(value);
+    }
+
+    public void print(){
+        System.out.println(value);
+    }
+
+    private void checkType(TypeOfData expectedType) {
+        if (!type.equals(expectedType)) {
+            throw new UnsupportedOperationException("Type of this convertor is not " + expectedType);
+        }
+    }
+
+    public void concatenate(String str) {
+        checkType(TypeOfData.STRING);
 
         value = value + str;
     }
 
-    public void add(int num){
-        if(!validateInput(Integer.class))
-            return;
+    public void add(int num) {
+        checkType(TypeOfData.INTEGER);
 
-        value = (Integer) value + num;
+        value = String.valueOf(
+                Integer.parseInt(value) + num
+        );
     }
 
-    public void subtraction(int num){
-        if(!validateInput(Integer.class))
-            return;
+    public void subtract(int num) {
+        checkType(TypeOfData.INTEGER);
 
-        value = (Integer) value - num;
+        value = String.valueOf(
+                Integer.parseInt(value) - num
+        );
     }
 
-    public void division(int num){
+    public void divide(int num) {
+        checkType(TypeOfData.INTEGER);
+
         if(num == 0)
-            return;
+            throw new ArithmeticException("Division by zero");
 
-        if(!validateInput(Integer.class))
-            return;
-
-        value = (Integer) value / num;
+        value = String.valueOf(
+                Integer.parseInt(value) / num
+        );
     }
 
-    public void multiplication(int num){
-        if(!validateInput(Integer.class))
-            return;
+    public void multiply(int num) {
+        checkType(TypeOfData.INTEGER);
 
-        value = (Integer) value * num;
+        value = String.valueOf(
+                Integer.parseInt(value) * num
+        );
     }
 
-    public void binaryAnd(boolean val){
-        if(!validateInput(Boolean.class))
-            return;
 
-        value = (Boolean) value && val;
+    public void binaryAnd(boolean b) {
+        checkType(TypeOfData.BOOLEAN);
+
+        value = String.valueOf(
+                Boolean.parseBoolean(value) && b
+        );
     }
 
-    public void changeCharValue(Character ch){
-        if(!validateInput(Character.class))
-            return;
+    public void setChar(char ch){
+        checkType(TypeOfData.CHARACTER);
 
-        value = ch;
-    }
-
-    public void printValue(){
-        System.out.println(value);
+        value = String.valueOf(ch);
     }
 }
